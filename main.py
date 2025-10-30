@@ -1,9 +1,42 @@
 import pandas
 
+# Notizen Sena -> Ich glaube das Modul CSV ist besser für z.B einzelne Spalten (Name) auszugeben
+# Importiert CSV-Modul
+import csv
 
 # Kontakte anzeigen
 def display_contacts():
-    print("h")
+    try: 
+        with open('contacts.csv', 'r', encoding='utf-8') as file:
+            # Zum Testen
+            print(f"Datei erfolgreich geöffnet: {file}")
+
+            # Ganze CSV ausgeben als Liste
+            reader = csv.reader(file, delimiter=';')
+            
+            # Für den Terminal Output # wird noch angepasst
+            print("\n" + "=" * 50)
+            print("\tMEINE KONTAKTE")
+            print("\n" + "=" * 50)
+
+            # https://ingo-janssen.de/csv-dateien-lesen-mit-python/
+            for line in reader:
+                # Sicherstellen, dass alle Spalten ausgegeben werden
+                if len(line) <= 4:
+                    print("-" * 40)
+                    print(f"Vorname: {line[0]}")   
+                    print(f"Nachname: {line[1]}")
+                    print(f"Telefon: +{line[2]}")
+                    print(f"E-Mail: {line[3]}") 
+                else:
+                    print("landet hier")  
+
+    # Wenn keine Datei existiert
+    except FileNotFoundError as e:
+        print(f'Datei existiert nicht: {e}')
+    except Exception as e:
+        print(f'Fehlermeldung: {e}')
+
 
 
 # Kontakt anlegen
