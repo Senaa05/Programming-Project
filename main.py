@@ -56,7 +56,8 @@ def delete_contact():
 # In die Datei schreiben 
 def write_to_file(contact):
     # with csv
-    df = pandas.read_csv('daten.csv', sep=';')
+    # Panda Auskommentiert
+    #df = pandas.read_csv('daten.csv', sep=';')
     try: 
         with open('contacts.csv', 'a') as file:
             for entry in contact:
