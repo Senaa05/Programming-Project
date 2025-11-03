@@ -58,7 +58,7 @@ def checkEmail(email):
         return True
     else:
         return False
-
+    
 
 # Kontakt anlegen
 def add_new_contact():
@@ -113,14 +113,47 @@ def add_new_contact():
         print(f'Kontakt konnte nicht hinzugefügt werden: {e}')
 
 
+def search_contact():
+    try:
+        with open('contacts.csv', 'r', encoding='utf-8') as file:
+
+            # Ganze CSV ausgeben als Liste
+            reader = csv.reader(file, delimiter=';')
+
+            # Ignoriert header (erste Zeile) im CSV 
+            next(reader, None)
+                
+            # Loopt durch die Listen
+            for line in reader:
+                # Sicherstellen, dass alle Spalten ausgegeben werden
+                if len(line) >= 4:
+                    # Konvertiert in tuple
+                    line = tuple(line)
+                    #print(line[0:2])
+                    # Setzt Vor- und Nachname zusammen
+                    fullname = ' '.join(line[0:2])
+                    print(fullname)
+                    #print({line[0:2]})   
+                else:
+                    print("Zeile unvollständig")  
+
+    # Wenn keine Datei existiert
+    except FileNotFoundError as e:
+        print(f'Datei nicht gefunden: {e}')
+    except Exception as e:
+        print(f'Fehlermeldung: {e}')
+
 # Kontakt bearbeiten
 def edit_contact():
-    print("h")
+    # User Input: welcher Kontakt wird bearbeitet
+    print("editieren")
 
 
 # Kontakt löschen
 def delete_contact():
-    print("h")
+    # User Input: welcher Kontakt wird gelöscht
+    # IF statement
+    search_contact()
 
 # In die Datei schreiben 
 def write_to_file(contact):
