@@ -9,17 +9,18 @@ import csv
 # Kontakte anzeigen
 def display_contacts():
     try: 
+        # Öffnet Datei im Lesemodus
         with open('contacts.csv', 'r', encoding='utf-8') as file:
 
             # Ganze CSV ausgeben als Liste
             reader = csv.reader(file, delimiter=';')
             
-            # Für den Terminal Output # wird noch angepasst
+            # Für den Terminal Output 
             print("\n" + "=" * 50)
             print("\t\tMEINE KONTAKTE")
             print("\n" + "=" * 50)
 
-            # https://ingo-janssen.de5/csv-dateien-lesen-mit-python/
+            # Loopt durch die Listen
             for line in reader:
                 # Sicherstellen, dass alle Spalten ausgegeben werden
                 if len(line) >= 4:
@@ -33,7 +34,7 @@ def display_contacts():
 
     # Wenn keine Datei existiert
     except FileNotFoundError as e:
-        print(f'Datei existiert nicht: {e}')
+        print(f'Datei nicht gefunden: {e}')
     except Exception as e:
         print(f'Fehlermeldung: {e}')
 
@@ -59,7 +60,9 @@ def checkEmail(email):
 # Kontakt anlegen
 def add_new_contact():
     try:
+        print("\n" + "=" * 50)
         print("\t\tKONTAKT ANLEGEN")
+        print("\n" + "=" * 50)
         print("Bitte gib folgende Informationen ein:")
 
         firstNameInput = input("Vorname: ")
@@ -151,7 +154,6 @@ def show_menu():
         elif option == '5':
             break
             
-
 
 # funktion aufrufen
 if __name__ == '__main__':
