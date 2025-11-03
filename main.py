@@ -37,11 +37,67 @@ def display_contacts():
     except Exception as e:
         print(f'Fehlermeldung: {e}')
 
+def checkName(name):
+    if name != "" and name.replace(" ", "").replace("-", "").isalpha():
+        return True
+    else:
+        return False
+    
+def checkPhoneNumber(phoneNumber):
+    if phoneNumber != "" and phoneNumber.replace(" ", "").replace("+", "").isdigit():
+        return True
+    else:
+        return False
+    
+def checkEmail(email):
+    if email != "" and "@" in email and "." in email:
+        return True
+    else:
+        return False
 
 
 # Kontakt anlegen
 def add_new_contact():
-    print("h")
+    try:
+        print("\t\tKONTAKT ANLEGEN")
+        print("Bitte gib folgende Informationen ein:")
+
+        firstNameInput = input("Vorname: ")
+        if checkName(firstNameInput):
+            firstname = firstNameInput
+        else:
+            raise ValueError("Vorname darf nicht leer sein und darf nur Buchstaben beinhalten.")
+        
+        lastNameInput = input("Nachname: ")
+        if checkName(lastNameInput):
+            lastname = lastNameInput
+        else:
+            raise ValueError("Nachname darf nicht leer sein und darf nur Buchstaben beinhalten.")
+
+
+        phoneNumberInput = input("Telefonnummer: ")
+        if checkPhoneNumber(phoneNumberInput):
+            phoneNumber = phoneNumberInput
+        else:
+            raise ValueError("Telefonnummer darf nicht leer sein und muss nur Zahlen enthalten.")
+        
+
+        emailInput = input("E-Mail: ")
+        if checkEmail(emailInput):
+            email = emailInput
+        else:
+            raise ValueError("E-Mail darf nicht leer sein und muss ein gültiges Format haben (@ und .).")
+
+        contact = {
+            'Vorname': firstname + ';',
+            'Name': lastname + ';',
+            'Telefon': phoneNumber + ';',
+            'E-Mail': email + '\n'
+        }
+        write_to_file(contact)
+        print("\n Kontakt erfolgreich hinzugefügt.")
+    except Exception as e:
+        print(f'Kontakt konnte nicht hinzugefügt werden: {e}')
 
 
 # Kontakt bearbeiten
