@@ -14,6 +14,9 @@ def display_contacts():
 
             # Ganze CSV ausgeben als Liste
             reader = csv.reader(file, delimiter=';')
+
+            # Ignoriert header (erste Zeile) im CSV 
+            next(reader, None)
             
             # Für den Terminal Output 
             print("\n" + "=" * 50)
@@ -65,31 +68,38 @@ def add_new_contact():
         print("\n" + "=" * 50)
         print("Bitte gib folgende Informationen ein:")
 
-        firstNameInput = input("Vorname: ")
-        if checkName(firstNameInput):
-            firstname = firstNameInput
-        else:
-            raise ValueError("Vorname darf nicht leer sein und darf nur Buchstaben beinhalten.")
+        # Fragt den User, solange er eine gültige Eingabe macht
+        while True: 
+            firstNameInput = input("Vorname: ")
+            if checkName(firstNameInput):
+                firstname = firstNameInput
+                break
+            else:
+                print("Vorname darf nicht leer sein und darf nur Buchstaben beinhalten. Bitte gib nochmals den Vornamen ein.")                
+
+        while True:
+            lastNameInput = input("Nachname: ")
+            if checkName(lastNameInput):
+                lastname = lastNameInput
+                break
+            else:
+                print("Nachname darf nicht leer sein und darf nur Buchstaben beinhalten. Bitte gib nochmals den Nachnamen ein.")
+
+        while True:
+            phoneNumberInput = input("Telefonnummer: ")
+            if checkPhoneNumber(phoneNumberInput):
+                phoneNumber = phoneNumberInput
+                break
+            else:
+                print("Telefonnummer darf nicht leer sein und muss nur Zahlen enthalten. Bitte gib nochmals die Telefonnummer ein. ")
         
-        lastNameInput = input("Nachname: ")
-        if checkName(lastNameInput):
-            lastname = lastNameInput
-        else:
-            raise ValueError("Nachname darf nicht leer sein und darf nur Buchstaben beinhalten.")
-
-
-        phoneNumberInput = input("Telefonnummer: ")
-        if checkPhoneNumber(phoneNumberInput):
-            phoneNumber = phoneNumberInput
-        else:
-            raise ValueError("Telefonnummer darf nicht leer sein und muss nur Zahlen enthalten.")
-        
-
-        emailInput = input("E-Mail: ")
-        if checkEmail(emailInput):
-            email = emailInput
-        else:
-            raise ValueError("E-Mail darf nicht leer sein und muss ein gültiges Format haben (@ und .).")
+        while True:
+            emailInput = input("E-Mailadresse: ")
+            if checkEmail(emailInput):
+                email = emailInput
+                break
+            else:
+                print("E-Mail darf nicht leer sein und muss ein gültiges Format haben (@ und .). Bitte gib nochmals die E-Mailadresse ein.")
 
         contact = {
             'Vorname': firstname + ';',
@@ -118,7 +128,7 @@ def write_to_file(contact):
     # Panda Auskommentiert
     #df = pandas.read_csv('daten.csv', sep=';')
     try: 
-        with open('contacts.csv', 'a') as file:
+        with open('contacts.csv', 'a', encoding='utf-8') as file:
             for entry in contact:
                 file.write(contact[entry])
     except Exception as e:
