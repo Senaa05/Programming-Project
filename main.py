@@ -113,7 +113,7 @@ def add_new_contact():
         print(f'Kontakt konnte nicht hinzugefügt werden: {e}')
 
 
-def search_contact():
+def search_contact(contact):
     try:
         with open('contacts.csv', 'r', encoding='utf-8') as file:
 
@@ -129,13 +129,22 @@ def search_contact():
                 if len(line) >= 4:
                     # Konvertiert in tuple
                     line = tuple(line)
-                    #print(line[0:2])
                     # Setzt Vor- und Nachname zusammen
-                    fullname = ' '.join(line[0:2])
+                    fullname = ' '.join(line[0:2]).lower()
                     print(fullname)
-                    #print({line[0:2]})   
+                    #print({line[0:2]}) 
+                    if fullname == contact:
+                        print(f'Kontakt gefunden {fullname}')
+                        fullname = contact
+                        print(fullname)
+                        break
+                    else:
+                        print(f'Kontakt nicht gefunden {fullname}')  
                 else:
-                    print("Zeile unvollständig")  
+                    print("Zeile unvollständig") 
+            # if-statement
+            
+            
 
     # Wenn keine Datei existiert
     except FileNotFoundError as e:
@@ -152,8 +161,9 @@ def edit_contact():
 # Kontakt löschen
 def delete_contact():
     # User Input: welcher Kontakt wird gelöscht
-    # IF statement
-    search_contact()
+    contact = input('Gib den Vor- und Nachnamen des Kontakts zur Löschung ein: ').lower()
+    search_contact(contact)
+
 
 # In die Datei schreiben 
 def write_to_file(contact):
