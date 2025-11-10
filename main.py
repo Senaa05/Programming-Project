@@ -154,36 +154,47 @@ def edit_contact():
 
 # Kontakt löschen
 def delete_contact():
-    # User Input: welcher Kontakt wird gelöscht
-    contact = input('Gib den Vor- und Nachnamen des Kontakts zur Löschung ein: ').lower()
-    found_contact = search_contact(contact)
+    try:
+        # User Input: welcher Kontakt wird gelöscht
+        contact = input('Gib den Vor- und Nachnamen des Kontakts zur Löschung ein: ').lower()
+        found_contact = search_contact(contact)
 
-    if found_contact:
-        while True:
-            confirm = input(f'Dieser Kontakt: {found_contact} wird gelöscht. Möchten Sie fortfahren? (j/n): ').lower()
-            #Bestätigung der User abholen
-            if confirm == 'j':
-                # Öffnet Datei im Lesemodus -> müssen wir hier auch try machen?
-                with open('contacts.csv', 'r', encoding='utf-8') as file:
-                    # Ganze CSV ausgeben
-                    reader = csv.reader(file, delimiter=';')
-                    # Alle Zeilen speichern 
-                    lines = list(reader)         
-                # Datei öffnen zum Schreiben
-                with open('contacts.csv', 'w', newline='', encoding='utf-8') as file:
-                    writer = csv.writer(file, delimiter=';')
-                    # Überschreibt die Datei mit den restlichen Einträgen
-                    for line in lines:
-                        if line != found_contact:
-                            writer.writerow(line)
-                print('Kontakt wurde erfolgreich gelöscht.')
-                break
-            elif confirm == 'n':
-                print('Kontakt wurde nicht gelöscht.')
-                break
-            else:
-                print("Ungültige Eingabe! Bitte wählen Sie (j) oder (n).")
-                continue
+        # Output für Konsole
+        print("\n" + "=" * 50)
+        print("\t\tKONTAKT LÖSCHEN")
+        print("\n" + "=" * 50)
+
+        if found_contact:
+            while True:
+                confirm = input(f'Dieser Kontakt: {found_contact} wird gelöscht. Möchten Sie fortfahren? (j/n): ').lower()
+                #Bestätigung der User abholen
+                if confirm == 'j':
+                    # Öffnet Datei im Lesemodus 
+                    with open('contacts.csv', 'r', encoding='utf-8') as file:
+                        # Ganze CSV ausgeben
+                        reader = csv.reader(file, delimiter=';')
+                        # Alle Zeilen speichern 
+                        lines = list(reader)         
+                    # Datei öffnen zum Schreiben
+                    with open('contacts.csv', 'w', newline='', encoding='utf-8') as file:
+                        writer = csv.writer(file, delimiter=';')
+                        # Überschreibt die Datei mit den restlichen Einträgen
+                        for line in lines:
+                            if line != found_contact:
+                                writer.writerow(line)
+                    print('Kontakt wurde erfolgreich gelöscht.')
+                    break
+                elif confirm == 'n':
+                    print('Kontakt wurde nicht gelöscht.')
+                    break
+                else:
+                    print("Ungültige Eingabe! Bitte wählen Sie (j) oder (n).")
+                    continue
+    # Wenn Datei nicht existiert
+    except FileNotFoundError as e:
+        print(f'Datei nicht gefunden: {e}')
+    except Exception as e:
+        print(f'Fehlermeldung: {e}')
 
 
 
