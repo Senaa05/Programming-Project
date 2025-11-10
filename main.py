@@ -161,12 +161,40 @@ def edit_contact():
         if found_contact:
             print("Gib die neuen Informationen ein (leer lassen, um den aktuellen Wert beizubehalten):")
 
-            new_firstname = input(f'Vorname ({found_contact[0]}): ') or found_contact[0]
-            new_lastname = input(f'Nachname ({found_contact[1]}): ') or found_contact[1]
-            new_phone = input(f'Telefon ({found_contact[2]}): ') or found_contact[2]
-            new_email = input(f'E-Mail ({found_contact[3]}): ') or found_contact[3]
+            while True:
+                newFirstname = input(f'Vorname ({found_contact[0]}): ') or found_contact[0]
+                if (checkName(newFirstname)):
+                    newFirstname = newFirstname
+                    break
+                else:
+                    print("Vorname darf nicht leer sein und darf nur Buchstaben beinhalten. Bitte gib nochmals den Vornamen ein.")   
 
-            updated_contact = [new_firstname, new_lastname, new_phone, new_email]
+            while True:
+                newLastname = input(f'Nachname ({found_contact[1]}): ') or found_contact[1]
+                if (checkName(newLastname)):
+                    newLastname = newLastname
+                    break
+                else:
+                    print("Nachname darf nicht leer sein und darf nur Buchstaben beinhalten. Bitte gib nochmals den Nachnamen ein.") 
+
+
+            while True:
+                newPhone = input(f'Telefon ({found_contact[2]}): ') or found_contact[2]
+                if (checkPhoneNumber(newPhone)):
+                    newPhone = newPhone
+                    break
+                else:
+                    print("Telefonnummer darf nicht leer sein und muss nur Zahlen enthalten. Bitte gib nochmals die Telefonnummer ein. ")
+
+            while True:
+                newEmail = input(f'E-Mail ({found_contact[3]}): ') or found_contact[3]
+                if (checkEmail(newEmail)):
+                    newEmail = newEmail
+                    break
+                else:
+                    print("E-Mail darf nicht leer sein und muss ein gültiges Format haben (@ und .). Bitte gib nochmals die E-Mailadresse ein.")
+
+            updated_contact = [newFirstname, newLastname, newPhone, newEmail]
 
             # Datei öffnen zum Lesen
             with open('contacts.csv', 'r', encoding='utf-8') as file:
