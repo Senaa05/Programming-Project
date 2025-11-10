@@ -148,8 +148,46 @@ def search_contact(contact):
 
 # Kontakt bearbeiten
 def edit_contact():
-    # User Input: welcher Kontakt wird bearbeitet
-    print("editieren")
+    try:
+        # User Input: welcher Kontakt wird bearbeitet
+        contact = input('Gib den Vor- und Nachnamen des Kontakts zur Bearbeitung ein: ').lower()
+        found_contact = search_contact(contact)
+    
+        # Output für Konsole
+        print("\n" + "=" * 50)  
+        print("\t\tKONTAKT BEARBEITEN")
+        print("\n" + "=" * 50)
+
+        if found_contact:
+            print("Gib die neuen Informationen ein (leer lassen, um den aktuellen Wert beizubehalten):")
+
+            new_firstname = input(f'Vorname ({found_contact[0]}): ') or found_contact[0]
+            new_lastname = input(f'Nachname ({found_contact[1]}): ') or found_contact[1]
+            new_phone = input(f'Telefon ({found_contact[2]}): ') or found_contact[2]
+            new_email = input(f'E-Mail ({found_contact[3]}): ') or found_contact[3]
+
+            updated_contact = [new_firstname, new_lastname, new_phone, new_email]
+
+            # Datei öffnen zum Lesen
+            with open('contacts.csv', 'r', encoding='utf-8') as file:
+                reader = csv.reader(file, delimiter=';')
+                lines = list(reader)
+
+            # Datei öffnen zum Schreiben
+            with open('contacts.csv', 'w', newline='', encoding='utf-8') as file:
+                writer = csv.writer(file, delimiter=';')
+                for line in lines:
+                    if line == found_contact:
+                        writer.writerow(updated_contact)
+                    else:
+                        writer.writerow(line)
+
+            print('Kontakt wurde erfolgreich aktualisiert.')
+    # Wenn Datei nicht existiert
+    except FileNotFoundError as e:
+        print(f'Datei nicht gefunden: {e}')
+    except Exception as e:
+        print(f'Fehlermeldung: {e}')
 
 
 # Kontakt löschen
@@ -195,17 +233,6 @@ def delete_contact():
         print(f'Datei nicht gefunden: {e}')
     except Exception as e:
         print(f'Fehlermeldung: {e}')
-
-
-
-                    
-
-
-
-
-
-
-
 
 
 # In die Datei schreiben 
