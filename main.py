@@ -18,6 +18,10 @@ def display_contacts():
             print("\t\tMEINE KONTAKTE")
             print("\n" + "=" * 50)
 
+            # Die Liste von a-z sortieren (nach Vornamen)  
+            sorted_list = sorted(reader, key=lambda x: x[0])
+            reader = sorted_list
+
             # Loopt durch die Listen
             for line in reader:
                 # Sicherstellen, dass alle Spalten ausgegeben werden
