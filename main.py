@@ -1,8 +1,3 @@
-# Panda Modul macht beim Laufen des Codes Probleme bei mir, obwohl ich es installiert habe -> sena
-# habe es mal auskommentiert
-#import pandas
-
-# Notizen Sena -> Ich glaube das Modul CSV ist besser für z.B einzelne Spalten (Name) auszugeben
 # Importiert CSV-Modul
 import csv
 
@@ -275,10 +270,6 @@ def write_to_file(contact):
     except Exception as e:
         print("Fehler " + e)
 
-
-# Von der Datei auslesen
-def read_from_file():
-    print("h")
 
 # Menu
 def show_menu():
