@@ -7,32 +7,32 @@ def display_contacts():
         # Öffnet Datei im Lesemodus
         with open('contacts.csv', 'r', encoding='utf-8') as file:
 
-            # Ganze CSV ausgeben als Liste
+            # Liest alle Zeilen ein
             reader = csv.reader(file, delimiter=';')
 
             # Ignoriert header (erste Zeile) im CSV 
             next(reader, None)
             
             # Für den Terminal Output 
-            print("\n" + "=" * 50)
-            print("\t\tMEINE KONTAKTE")
-            print("\n" + "=" * 50)
+            print('\n' + '=' * 50)
+            print('\t\tMEINE KONTAKTE')
+            print('\n' + '=' * 50)
 
             # Die Liste von a-z sortieren (nach Vornamen)  
             sorted_list = sorted(reader, key=lambda x: x[0])
             reader = sorted_list
 
-            # Loopt durch die Listen
+            # Loopt durch die Kontakte
             for line in reader:
-                # Sicherstellen, dass alle Spalten ausgegeben werden
+                # Sicherstellen, dass min. 4 Spalten vorhanden sind
                 if len(line) >= 4:
-                    print("-" * 40)
-                    print(f"Vorname: {line[0]}")   
-                    print(f"Nachname: {line[1]}")
-                    print(f"Telefon: +{line[2]}")
-                    print(f"E-Mail: {line[3]}") 
+                    print('-' * 40)
+                    print(f'Vorname: {line[0]}')   
+                    print(f'Nachname: {line[1]}')
+                    print(f'Telefon: +{line[2]}')
+                    print(f'E-Mail: {line[3]}') 
                 else:
-                    print("Zeile unvollständig")  
+                    print('Zeile unvollständig.')  
 
     # Wenn keine Datei existiert
     except FileNotFoundError as e:
@@ -40,18 +40,21 @@ def display_contacts():
     except Exception as e:
         print(f'Fehlermeldung: {e}')
 
+# Prüft, ob der Name nicht leer, nur aus Buchstaben besteht 
 def checkName(name):
     if name != "" and name.replace(" ", "").replace("-", "").isalpha():
         return True
     else:
         return False
-    
+
+# Prüft, ob die Nummer nicht leer ist, nur aus Ziffern besteht
 def checkPhoneNumber(phoneNumber):
     if phoneNumber != "" and phoneNumber.replace(" ", "").replace("+", "").isdigit():
         return True
     else:
         return False
-    
+
+# Prüft, ob die E-Mail nicht leer ist, ein @-Zeichen und Punkt (.) enthält  
 def checkEmail(email):
     if email != "" and "@" in email and "." in email:
         return True
@@ -62,30 +65,32 @@ def checkEmail(email):
 # Kontakt anlegen
 def add_new_contact():
     try:
-        print("\n" + "=" * 50)
-        print("\t\tKONTAKT ANLEGEN")
-        print("\n" + "=" * 50)
-        print("Bitte gib folgende Informationen ein:")
 
-        # Fragt den User, solange er eine gültige Eingabe macht
+        # Output für den Terminal
+        print('\n' + '=' * 50)
+        print('\t\tKONTAKT ANLEGEN')
+        print('\n' + '=' * 50)
+        print('Bitte gib folgende Informationen ein: ')
+
+        # Fragt den User, bis er eine gültige Eingabe macht
         while True: 
-            firstNameInput = input("Vorname: ")
+            firstNameInput = input('Vorname: ')
             if checkName(firstNameInput):
                 firstname = firstNameInput
                 break
             else:
-                print("Vorname darf nicht leer sein und darf nur Buchstaben beinhalten. Bitte gib nochmals den Vornamen ein.")                
+                print('Vorname darf nicht leer sein und darf nur Buchstaben beinhalten. Bitte gib nochmals den Vornamen ein.')                
 
         while True:
-            lastNameInput = input("Nachname: ")
+            lastNameInput = input('Nachname: ')
             if checkName(lastNameInput):
                 lastname = lastNameInput
                 break
             else:
-                print("Nachname darf nicht leer sein und darf nur Buchstaben beinhalten. Bitte gib nochmals den Nachnamen ein.")
+                print('Nachname darf nicht leer sein und darf nur Buchstaben beinhalten. Bitte gib nochmals den Nachnamen ein.')
 
         while True:
-            phoneNumberInput = input("Telefonnummer: ")
+            phoneNumberInput = input('Telefonnummer: ')
             if checkPhoneNumber(phoneNumberInput):
                 phoneNumber = phoneNumberInput
                 break
@@ -93,13 +98,14 @@ def add_new_contact():
                 print("Telefonnummer darf nicht leer sein und muss nur Zahlen enthalten. Bitte gib nochmals die Telefonnummer ein. ")
         
         while True:
-            emailInput = input("E-Mailadresse: ")
+            emailInput = input('E-Mailadresse: ')
             if checkEmail(emailInput):
                 email = emailInput
                 break
             else:
-                print("E-Mail darf nicht leer sein und muss ein gültiges Format haben (@ und .). Bitte gib nochmals die E-Mailadresse ein.")
+                print('E-Mail darf nicht leer sein und muss ein gültiges Format haben (@ und .). Bitte gib nochmals die E-Mailadresse ein.')
 
+        # Struktur für den neuen Kontakt-Eintrag ins CSV
         contact = {
             'Vorname': firstname + ';',
             'Name': lastname + ';',
@@ -107,7 +113,7 @@ def add_new_contact():
             'E-Mail': email + '\n'
         }
         write_to_file(contact)
-        print("\n Kontakt erfolgreich hinzugefügt.")
+        print('\n Kontakt erfolgreich hinzugefügt.')
     except Exception as e:
         print(f'Kontakt konnte nicht hinzugefügt werden: {e}')
 
@@ -116,19 +122,19 @@ def search_contact(contact):
     try:
         with open('contacts.csv', 'r', encoding='utf-8') as file:
 
-            # Ganze CSV ausgeben als Liste
+            # Liest alle Zeilen ein
             reader = csv.reader(file, delimiter=';')
 
             # Ignoriert header (erste Zeile) im CSV 
             next(reader, None)
                 
-            # Loopt durch die Listen
+            # Loopt durch die Kontakte
             for line in reader:
-                # Sicherstellen, dass alle Spalten ausgegeben werden
+                # Sicherstellen, dass min. 4 Spalten vorhanden sind
                 if len(line) >= 4:
                     # Setzt Vor- und Nachname zusammen
                     fullname = ' '.join(line[0:2]).lower()
-                    # Vergleich den CSV-Eintrag mit dem User-Input
+                    # Vergleicht den CSV-Eintrag mit dem User-Input
                     if fullname == contact:
                         print(f'Kontakt gefunden: {fullname}')
                         # Ganze CSV-Zeile ausgeben
@@ -153,20 +159,21 @@ def edit_contact():
         found_contact = search_contact(contact)
     
         # Output für Konsole
-        print("\n" + "=" * 50)  
-        print("\t\tKONTAKT BEARBEITEN")
-        print("\n" + "=" * 50)
+        print('\n' + '=' * 50) 
+        print('\t\tKONTAKT BEARBEITEN')
+        print('\n' + '=' * 50)
 
         if found_contact:
-            print("Gib die neuen Informationen ein (leer lassen, um den aktuellen Wert beizubehalten):")
+            print('Gib die neuen Informationen ein (leer lassen, um den aktuellen Wert beizubehalten): ')
 
+            # User Input: Eingabe eines neuen Wertes oder Beibehaltung des Wertes
             while True:
                 newFirstname = input(f'Vorname ({found_contact[0]}): ') or found_contact[0]
                 if (checkName(newFirstname)):
                     newFirstname = newFirstname
                     break
                 else:
-                    print("Vorname darf nicht leer sein und darf nur Buchstaben beinhalten. Bitte gib nochmals den Vornamen ein.")   
+                    print('Vorname darf nicht leer sein und darf nur Buchstaben beinhalten. Bitte gib nochmals den Vornamen ein.')   
 
             while True:
                 newLastname = input(f'Nachname ({found_contact[1]}): ') or found_contact[1]
@@ -174,7 +181,7 @@ def edit_contact():
                     newLastname = newLastname
                     break
                 else:
-                    print("Nachname darf nicht leer sein und darf nur Buchstaben beinhalten. Bitte gib nochmals den Nachnamen ein.") 
+                    print('Nachname darf nicht leer sein und darf nur Buchstaben beinhalten. Bitte gib nochmals den Nachnamen ein.') 
 
 
             while True:
@@ -183,7 +190,7 @@ def edit_contact():
                     newPhone = newPhone
                     break
                 else:
-                    print("Telefonnummer darf nicht leer sein und muss nur Zahlen enthalten. Bitte gib nochmals die Telefonnummer ein. ")
+                    print('Telefonnummer darf nicht leer sein und muss nur Zahlen enthalten. Bitte gib nochmals die Telefonnummer ein. ')
 
             while True:
                 newEmail = input(f'E-Mail ({found_contact[3]}): ') or found_contact[3]
@@ -191,8 +198,9 @@ def edit_contact():
                     newEmail = newEmail
                     break
                 else:
-                    print("E-Mail darf nicht leer sein und muss ein gültiges Format haben (@ und .). Bitte gib nochmals die E-Mailadresse ein.")
+                    print('E-Mail darf nicht leer sein und muss ein gültiges Format haben (@ und .). Bitte gib nochmals die E-Mailadresse ein.')
 
+            # Struktur der Liste vorgeben
             updated_contact = [newFirstname, newLastname, newPhone, newEmail]
 
             # Datei öffnen zum Lesen
@@ -203,10 +211,13 @@ def edit_contact():
             # Datei öffnen zum Schreiben
             with open('contacts.csv', 'w', newline='', encoding='utf-8') as file:
                 writer = csv.writer(file, delimiter=';')
+                # Loopt durch die Kontakte
                 for line in lines:
                     if line == found_contact:
+                        # Überschreibt die CSV mit dem Updated (veränderten) Kontakt
                         writer.writerow(updated_contact)
                     else:
+                        # Die orginale Zeile wird geschrieben
                         writer.writerow(line)
 
             print('Kontakt wurde erfolgreich aktualisiert.')
@@ -232,11 +243,11 @@ def delete_contact():
         if found_contact:
             while True:
                 confirm = input(f'Dieser Kontakt: {found_contact} wird gelöscht. Möchten Sie fortfahren? (j/n): ').lower()
-                #Bestätigung der User abholen
+                # Bestätigung der User abholen
                 if confirm == 'j':
                     # Öffnet Datei im Lesemodus 
                     with open('contacts.csv', 'r', encoding='utf-8') as file:
-                        # Ganze CSV ausgeben
+                        # Liest alle Zeilen ein
                         reader = csv.reader(file, delimiter=';')
                         # Alle Zeilen speichern 
                         lines = list(reader)         
@@ -264,15 +275,13 @@ def delete_contact():
 
 # In die Datei schreiben 
 def write_to_file(contact):
-    # with csv
-    # Panda Auskommentiert
-    #df = pandas.read_csv('daten.csv', sep=';')
     try: 
+        # Neue Kontakte werden angehängt 
         with open('contacts.csv', 'a', encoding='utf-8') as file:
             for entry in contact:
                 file.write(contact[entry])
     except Exception as e:
-        print("Fehler " + e)
+        print(f'Fehler: {e}')
 
 
 # Menu
