@@ -113,7 +113,7 @@ def add_new_contact():
             'E-Mail': email + '\n'
         }
         write_to_file(contact)
-        print('\n Kontakt erfolgreich hinzugefügt.')
+        print('\n Kontakt wurde erfolgreich hinzugefügt.')
     except Exception as e:
         print(f'Kontakt konnte nicht hinzugefügt werden: {e}')
 
@@ -161,7 +161,7 @@ def edit_contact():
         # Output für Konsole
         print('\n' + '=' * 50) 
         print('\t\tKONTAKT BEARBEITEN')
-        print('\n' + '=' * 50)
+        print('\n'+ '=' * 50)
 
         if found_contact:
             print('Gib die neuen Informationen ein (leer lassen, um den aktuellen Wert beizubehalten): ')
@@ -288,7 +288,7 @@ def write_to_file(contact):
 def show_menu():
     while True:
         print('\n' + '*'*40)
-        print('Kontaktbuch')
+        print('\t\tKontaktbuch')
         print('\n' + '*'*40)
         print('1. Kontakte anzeigen')
         print('2. Kontakt anlegen')
