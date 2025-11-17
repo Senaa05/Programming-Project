@@ -154,8 +154,16 @@ def search_contact(contact):
 def edit_contact():
     try:
         # User Input: welcher Kontakt wird bearbeitet
-        contact = input('Gib den Vor- und Nachnamen des Kontakts zur Bearbeitung ein: ').lower()
-        found_contact = search_contact(contact)
+        while True:
+            contact = input('Gib den Vor- und Nachnamen des Kontakts zur Bearbeitung ein: ').lower()
+            if checkName(contact) == False:
+                print("Eingabe darf nicht leer sein und darf nur Buchstaben beinhalten. Bitte gib nochmals den Vor- und Nachnamen ein.")
+            elif len(contact.split()) != 2:
+                print("Bitte wiederhole deine Eingabe indem du beide Werte eingibst, also Vor- und Nachname.")
+            else:
+                found_contact = search_contact(contact)
+                break
+       
     
         # Output für Konsole
         print("\n" + "=" * 50)  
