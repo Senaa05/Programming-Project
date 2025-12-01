@@ -19,7 +19,7 @@ Das Repository ist wie folgt aufgebaut:
 
 ```
 Programming-Project/
-├── main.py        # Haputprogramm
+├── main.py        # Hauptprogramm
 ├── contacts.csv   # CSV-Datei mit den gespeicherten Kontakten
 ```
 
