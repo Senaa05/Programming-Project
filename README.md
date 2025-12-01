@@ -1,8 +1,7 @@
 # 📖 Kontaktbuch-Manager
 
-text?
 
-## Inhaltsverzeichnis
+## 📌 Inhaltsverzeichnis
 1. [Projektbeschrieb] 
 2. [Struktur Repository] 
 3. [Programm starten] 
@@ -19,8 +18,8 @@ Mit dem Konktaktbuch-Manager kann der Benutzer seine Kontakte zentral in einer D
 Das Repository ist wie folgt aufgebaut:
 
 ```
+Programming-Project/
 ├── main.py        # Haputprogramm
-
 ├── contacts.csv   # CSV-Datei mit den gespeicherten Kontakten
 ```
 
@@ -33,9 +32,13 @@ Das Repository ist wie folgt aufgebaut:
 
 **Beispiel für die Ausführung**
 
-Kopieren Sie dieses Repository und führen Sie den folgenden Befehl aus:
+Klonen Sie dieses Repository indem Sie diesen URL im VS Code einfügen:
 
 ```https://github.com/Senaa05/Programming-Project.git ```
+
+Oder im CMD/Terminal können Sie den folgenden Befehl ausführen:
+
+```git clone https://github.com/Senaa05/Programming-Project.git```
 
 ***
 ## 🎯 Zweck
