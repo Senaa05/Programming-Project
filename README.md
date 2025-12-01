@@ -1,5 +1,6 @@
 # 📖 Kontaktbuch-Manager
-***
+
+text?
 
 ## Inhaltsverzeichnis
 1. [Projektbeschrieb] 
@@ -7,17 +8,38 @@
 3. [Programm starten] 
 5. [Zweck] 
 
-## Projektbeschrieb
+***
+## 📝 Projektbeschrieb
 
-Mit dem Konktaktbuch-Manager kann der Benutzer seine Kontakte zentral in einer Datei abscheichern und entsprechend auch verwalten können. Ein kontatk beinhaltet folgende Daten: Vorname, Name, Telefonnummer und E-Mail. Kontakte kann man hinzufügen, bearbeiten, löschen und alphabetisch anzeigen lassen.
+Mit dem Konktaktbuch-Manager kann der Benutzer seine Kontakte zentral in einer Datei abscheichern und entsprechend auch verwalten können. Ein Kontatk beinhaltet folgende Daten: Vorname, Name, Telefonnummer und E-Mail. Kontakte kann man hinzufügen, bearbeiten, löschen und alphabetisch anzeigen lassen.
 
+***
 ## 📁 Struktur Repository
 
+Das Repository ist wie folgt aufgebaut:
 
+```
+├── main.py        # Haputprogramm
 
+├── contacts.csv   # CSV-Datei mit den gespeicherten Kontakten
+```
+
+***
 ## 🚀 Programm starten
 
-text
+**Anforderungen**
 
-## Zweck
-text
+- Python 3.8+ (auch andere Versionen sollten Funktionieren)
+
+**Beispiel für die Ausführung**
+
+Kopieren Sie dieses Repository und führen Sie den folgenden Befehl aus:
+
+```https://github.com/Senaa05/Programming-Project.git ```
+
+***
+## 🎯 Zweck
+Das Programm ist geeignet für:
+
+- Verwaltung von Kontakten
+- Pythoncodes für Beginner
