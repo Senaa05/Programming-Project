@@ -181,7 +181,7 @@ def edit_contact():
                     newFirstname = newFirstname
                     break
                 else:
-                    print('Vorname darf nicht leer sein und darf nur Buchstaben beinhalten. Bitte gib nochmals den Vornamen ein.')   
+                    print('Vorname darf nur Buchstaben beinhalten. Bitte gib nochmals den Vornamen ein.')   
 
             while True:
                 newLastname = input(f'Nachname ({found_contact[1]}): ') or found_contact[1]
@@ -189,7 +189,7 @@ def edit_contact():
                     newLastname = newLastname
                     break
                 else:
-                    print('Nachname darf nicht leer sein und darf nur Buchstaben beinhalten. Bitte gib nochmals den Nachnamen ein.') 
+                    print('Nachname darf nur Buchstaben beinhalten. Bitte gib nochmals den Nachnamen ein.') 
 
 
             while True:
@@ -198,7 +198,7 @@ def edit_contact():
                     newPhone = newPhone
                     break
                 else:
-                    print('Telefonnummer darf nicht leer sein und muss nur Zahlen enthalten. Bitte gib nochmals die Telefonnummer ein. ')
+                    print('Telefonnummer muss nur Zahlen enthalten. Bitte gib nochmals die Telefonnummer ein. ')
 
             while True:
                 newEmail = input(f'E-Mail ({found_contact[3]}): ') or found_contact[3]
@@ -206,7 +206,7 @@ def edit_contact():
                     newEmail = newEmail
                     break
                 else:
-                    print('E-Mail darf nicht leer sein und muss ein gültiges Format haben (@ und .). Bitte gib nochmals die E-Mailadresse ein.')
+                    print('E-Mail muss ein gültiges Format haben (@ und .). Bitte gib nochmals die E-Mailadresse ein.')
 
             # Struktur der Liste vorgeben
             updated_contact = [newFirstname, newLastname, newPhone, newEmail]
