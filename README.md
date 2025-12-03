@@ -2,10 +2,11 @@
 
 
 ## 📌 Inhaltsverzeichnis
-1. [Projektbeschrieb] 
-2. [Struktur Repository] 
-3. [Programm starten] 
-5. [Zweck] 
+1. [Projektbeschrieb](#projektbeschrieb)
+2. [Struktur Repository](#struktur-repository)
+3. [Programm starten](#programm-starten)
+4. [Zweck](#zweck)
+
 
 ***
 ## 📝 Projektbeschrieb
