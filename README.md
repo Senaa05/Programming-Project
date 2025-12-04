@@ -11,7 +11,18 @@
 ***
 ## 📝 Projektbeschrieb
 
-Mit dem Konktaktbuch-Manager kann der Benutzer seine Kontakte zentral in einer Datei abscheichern und entsprechend auch verwalten können. Ein Kontatk beinhaltet folgende Daten: Vorname, Name, Telefonnummer und E-Mail. Kontakte kann man hinzufügen, bearbeiten, löschen und alphabetisch anzeigen lassen.
+Der Kontaktbuch-Manager ermöglicht dem Benutzer seine Kontakte zentral in einer CSV-Datei zu speichern und entsprechend zu verwalten. 
+Ein Kontakt beinhaltet folgende Daten:
+- Vorname
+- Nachname
+- Telefonnummer
+- E-Mail-Adresse
+
+Das Projekt umfasst diese Hauptfunktionen:
+- 📄 Kontakt alphabetisch anzeigen
+- ➕ Kontakt hinzufügen
+- ✏️ Kontakt bearbeiten
+- ❌ Kontakt löschen
 
 ***
 ## 📁 Struktur Repository
@@ -29,17 +40,24 @@ Programming-Project/
 
 **Anforderungen**
 
-- Python 3.8+ (auch andere Versionen sollten Funktionieren)
+- Python 3.8+ (auch andere Versionen sollten funktionieren)
 
-**Beispiel für die Ausführung**
+**Repository Klonen**
 
-Klonen Sie dieses Repository indem Sie diesen URL im VS Code einfügen:
+Klonen Sie dieses Repository, indem Sie diesen URL im VS Code einfügen:
 
 ```https://github.com/Senaa05/Programming-Project.git ```
 
 Oder im CMD/Terminal können Sie den folgenden Befehl ausführen:
 
 ```git clone https://github.com/Senaa05/Programming-Project.git```
+
+**Beispiel für das Ausführen des Programms:**
+
+Zum Starten des Programm wird dieser Befehl ausgeführt:
+
+```python main.py```
+
 
 ***
 ## 🎯 Zweck
