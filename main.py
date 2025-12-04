@@ -316,6 +316,10 @@ def show_menu():
             delete_contact()
         elif option == '5':
             break
+        elif option == '':
+            print('Bitte geben Sie eine Option 1-5 ein:')
+        else:
+            print('Bitte wählen Sie eine gültige Option 1-5 aus:')
             
 
 # funktion aufrufen
