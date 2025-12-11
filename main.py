@@ -74,7 +74,7 @@ def add_new_contact():
 
         # Fragt den User, bis er eine gültige Eingabe macht
         while True: 
-            firstNameInput = input('Vorname: ')
+            firstNameInput = input('Vorname: ').title().strip()
             if checkName(firstNameInput):
                 firstname = firstNameInput
                 break
@@ -82,7 +82,7 @@ def add_new_contact():
                 print('Vorname darf nicht leer sein und darf nur Buchstaben beinhalten. Bitte gib nochmals den Vornamen ein.')                
 
         while True:
-            lastNameInput = input('Nachname: ')
+            lastNameInput = input('Nachname: ').title().strip()
             if checkName(lastNameInput):
                 lastname = lastNameInput
                 break
@@ -90,7 +90,7 @@ def add_new_contact():
                 print('Nachname darf nicht leer sein und darf nur Buchstaben beinhalten. Bitte gib nochmals den Nachnamen ein.')
 
         while True:
-            phoneNumberInput = input('Telefonnummer: ')
+            phoneNumberInput = input('Telefonnummer: ').strip()
             if checkPhoneNumber(phoneNumberInput):
                 phoneNumber = phoneNumberInput
                 break
@@ -98,7 +98,7 @@ def add_new_contact():
                 print("Telefonnummer darf nicht leer sein und muss nur Zahlen enthalten. Bitte gib nochmals die Telefonnummer ein. ")
         
         while True:
-            emailInput = input('E-Mailadresse: ')
+            emailInput = input('E-Mailadresse: ').lower().strip()
             if checkEmail(emailInput):
                 email = emailInput
                 break
@@ -156,7 +156,7 @@ def edit_contact():
     try:
         # User Input: welcher Kontakt wird bearbeitet
         while True:
-            contact = input('Gib den Vor- und Nachnamen des Kontakts zur Bearbeitung ein: ').lower()
+            contact = input('Gib den Vor- und Nachnamen des Kontakts zur Bearbeitung ein: ').lower().strip()
             if checkName(contact) == False:
                 print("Eingabe darf nicht leer sein und darf nur Buchstaben beinhalten. Bitte gib nochmals den Vor- und Nachnamen ein.")
             elif len(contact.split()) != 2:
@@ -165,7 +165,6 @@ def edit_contact():
                 found_contact = search_contact(contact)
                 break
        
-    
         # Output für Konsole
         print('\n' + '=' * 50) 
         print('\t\tKONTAKT BEARBEITEN')
@@ -176,7 +175,7 @@ def edit_contact():
 
             # User Input: Eingabe eines neuen Wertes oder Beibehaltung des Wertes
             while True:
-                newFirstname = input(f'Vorname ({found_contact[0]}): ') or found_contact[0]
+                newFirstname = input(f'Vorname ({found_contact[0]}): ').title().strip() or found_contact[0]
                 if (checkName(newFirstname)):
                     newFirstname = newFirstname
                     break
@@ -184,7 +183,7 @@ def edit_contact():
                     print('Vorname darf nur Buchstaben beinhalten. Bitte gib nochmals den Vornamen ein.')   
 
             while True:
-                newLastname = input(f'Nachname ({found_contact[1]}): ') or found_contact[1]
+                newLastname = input(f'Nachname ({found_contact[1]}): ').title().strip() or found_contact[1]
                 if (checkName(newLastname)):
                     newLastname = newLastname
                     break
@@ -193,7 +192,7 @@ def edit_contact():
 
 
             while True:
-                newPhone = input(f'Telefon ({found_contact[2]}): ') or found_contact[2]
+                newPhone = input(f'Telefon ({found_contact[2]}): ').strip() or found_contact[2]
                 if (checkPhoneNumber(newPhone)):
                     newPhone = newPhone
                     break
@@ -201,7 +200,7 @@ def edit_contact():
                     print('Telefonnummer muss nur Zahlen enthalten. Bitte gib nochmals die Telefonnummer ein. ')
 
             while True:
-                newEmail = input(f'E-Mail ({found_contact[3]}): ') or found_contact[3]
+                newEmail = input(f'E-Mail ({found_contact[3]}): ').lower().strip() or found_contact[3]
                 if (checkEmail(newEmail)):
                     newEmail = newEmail
                     break
@@ -239,9 +238,16 @@ def edit_contact():
 # Kontakt löschen
 def delete_contact():
     try:
-        # User Input: welcher Kontakt wird gelöscht
-        contact = input('Gib den Vor- und Nachnamen des Kontakts zur Löschung ein: ').lower()
-        found_contact = search_contact(contact)
+        while True:
+            # User Input: welcher Kontakt wird gelöscht
+            contact = input('Gib den Vor- und Nachnamen des Kontakts zur Löschung ein: ').lower().strip()
+            if checkName(contact) == False:
+                    print("Eingabe darf nicht leer sein und darf nur Buchstaben beinhalten. Bitte gib nochmals den Vor- und Nachnamen ein.")
+            elif len(contact.split()) != 2:
+                print("Bitte wiederhole deine Eingabe indem du beide Werte eingibst, also Vor- und Nachname.")
+            else:
+                found_contact = search_contact(contact)
+                break
 
         # Output für Konsole
         print("\n" + "=" * 50)
@@ -267,7 +273,7 @@ def delete_contact():
                             if line != found_contact:
                                 writer.writerow(line)
                     print('Kontakt wurde erfolgreich gelöscht.')
-                    break
+                    break                    
                 elif confirm == 'n':
                     print('Kontakt wurde nicht gelöscht.')
                     break
