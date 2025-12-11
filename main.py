@@ -4,7 +4,7 @@ import csv
 # Kontakte anzeigen
 def display_contacts():
     try: 
-        # Öffnet Datei im Lesemodus
+        # Öffnet Datei im Lesemodus (Read Modus)
         with open('contacts.csv', 'r', encoding='utf-8') as file:
 
             # Liest alle Zeilen ein
@@ -265,7 +265,7 @@ def delete_contact():
                         reader = csv.reader(file, delimiter=';')
                         # Alle Zeilen speichern 
                         lines = list(reader)         
-                    # Datei öffnen zum Schreiben
+                    # Datei öffnen zum Schreiben (Write Modus)
                     with open('contacts.csv', 'w', newline='', encoding='utf-8') as file:
                         writer = csv.writer(file, delimiter=';')
                         # Überschreibt die Datei mit den restlichen Einträgen
@@ -290,7 +290,7 @@ def delete_contact():
 # In die Datei schreiben 
 def write_to_file(contact):
     try: 
-        # Neue Kontakte werden angehängt 
+        # Neue Kontakte werden angehängt (Append Modus)
         with open('contacts.csv', 'a', encoding='utf-8') as file:
             for entry in contact:
                 file.write(contact[entry])
