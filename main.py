@@ -159,7 +159,7 @@ def edit_contact():
             contact = input('Gib den Vor- und Nachnamen des Kontakts zur Bearbeitung ein: ').lower().strip()
             if checkName(contact) == False:
                 print("Eingabe darf nicht leer sein und darf nur Buchstaben beinhalten. Bitte gib nochmals den Vor- und Nachnamen ein.")
-            elif len(contact.split()) != 2:
+            elif len(contact.split()) == 1:
                 print("Bitte wiederhole deine Eingabe indem du beide Werte eingibst, also Vor- und Nachname.")
             else:
                 found_contact = search_contact(contact)
@@ -243,7 +243,7 @@ def delete_contact():
             contact = input('Gib den Vor- und Nachnamen des Kontakts zur Löschung ein: ').lower().strip()
             if checkName(contact) == False:
                     print("Eingabe darf nicht leer sein und darf nur Buchstaben beinhalten. Bitte gib nochmals den Vor- und Nachnamen ein.")
-            elif len(contact.split()) != 2:
+            elif len(contact.split()) == 1:
                 print("Bitte wiederhole deine Eingabe indem du beide Werte eingibst, also Vor- und Nachname.")
             else:
                 found_contact = search_contact(contact)
