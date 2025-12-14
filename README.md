@@ -33,6 +33,7 @@ Das Repository ist wie folgt aufgebaut:
 Programming-Project/
 ├── main.py        # Hauptprogramm
 ├── contacts.csv   # CSV-Datei mit den gespeicherten Kontakten
+├── G8_Präsentation_Kontaktbuch.pdf # Präsentation
 ```
 
 ***
